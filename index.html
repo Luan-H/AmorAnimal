@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amor Animal - Cuiabá</title>
     <link rel="stylesheet" href="bootstrap.css" />
+    <link rel="icon" href="img/icon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/icon.ico" type="image/x-icon" />
     <style>
       :root {
         /* Laranja (Predominante) */
         --bs-primary: #ea7c23;
         --bs-primary-rgb: 234, 124, 35;
-        
+
         /* Branco (Bege) */
         --bs-light: #fdf2d6;
         --bs-light-rgb: 253, 242, 214;
-        
+
         /* Preto */
         --bs-dark: #181310;
         --bs-dark-rgb: 24, 19, 16;
-        
+
         /* Cor base do texto e tons secundários */
         --bs-body-color: #181310;
         --bs-body-color-rgb: 24, 19, 16;
@@ -57,7 +59,10 @@
       class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm"
     >
       <div class="container">
-        <a class="navbar-brand text-primary fw-bold" href="#">Amor Animal</a>
+        <a class="navbar-brand text-primary fw-bold d-flex align-items-center" href="#">
+          <img src="img/aaa.jpg" alt="Logo Amor Animal" height="40" class="me-2 object-fit-contain" />
+          Amor Animal
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -108,14 +113,19 @@
           <div class="col-md-6">
             <h2 class="fw-bold mb-4 text-primary">Sobre a ONG</h2>
             <p>
-              Aqui você pode contar um pouco da história da ONG Amor Animal,
-              como o grupo de Cuiabá começou, quais foram as motivações e o amor
-              que os uniu em prol dos animais.
+              Há aproximadamente 5 anos atrás , alguns protetores independentes
+              se reuniram com o propósito de formar uma organização não
+              governamental (ONG) que tornasse possível assistir, com um pouco
+              mais de dignidade, cães em estado de abandono e vulnerabilidade.
             </p>
             <p>
-              Insira detalhes sobre os fundadores, os desafios iniciais e os
-              princípios que guiam a organização diariamente no resgate de cães
-              e gatos.
+              A Associação Amor Animal atua como entidade que oferta serviços de
+              forma continuada, permanente e planejada, direcionados à prevenção
+              e mitigação da vulnerabilidade de animais abandonados, captando
+              doações de pessoas físicas e/ou jurídicas, dos setores privados
+              e/ou públicos e atua também de forma proativa com informações e
+              conhecimento sobre as causas e impactos negativos do abandono de
+              animais na sociedade.
             </p>
           </div>
           <div class="col-md-6 text-center mt-4 mt-md-0">
@@ -187,20 +197,28 @@
             <div class="card shadow-sm border-0">
               <div class="d-flex">
                 <div
-                  class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center"
+                  class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
                   style="height: 200px; border-right: 2px solid white"
                 >
-                  [Foto Antes]
+                  <img
+                    src="img/ne-antes.jpeg"
+                    alt="Negão antes"
+                    class="w-100 h-100 object-fit-cover"
+                  />
                 </div>
                 <div
-                  class="bg-success text-white w-50 d-flex align-items-center justify-content-center"
+                  class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
                   style="height: 200px"
                 >
-                  [Foto Depois]
+                  <img
+                    src="img/ne-depois.jpeg"
+                    alt="Negão depois"
+                    class="w-100 h-100 object-fit-cover"
+                  />
                 </div>
               </div>
               <div class="card-body text-center">
-                <h5 class="card-title">Cãozinho 1</h5>
+                <h5 class="card-title">Negão</h5>
               </div>
             </div>
           </div>
@@ -209,20 +227,28 @@
             <div class="card shadow-sm border-0">
               <div class="d-flex">
                 <div
-                  class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center"
+                  class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
                   style="height: 200px; border-right: 2px solid white"
                 >
-                  [Foto Antes]
+                  <img
+                    src="img/vi-antes.jpeg"
+                    alt="Vitória antes"
+                    class="w-100 h-100 object-fit-cover"
+                  />
                 </div>
                 <div
-                  class="bg-success text-white w-50 d-flex align-items-center justify-content-center"
+                  class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
                   style="height: 200px"
                 >
-                  [Foto Depois]
+                  <img
+                    src="img/vi-depois.jpeg"
+                    alt="Vitória depois"
+                    class="w-100 h-100 object-fit-cover"
+                  />
                 </div>
               </div>
               <div class="card-body text-center">
-                <h5 class="card-title">Cãozinho 2</h5>
+                <h5 class="card-title">Vitória</h5>
               </div>
             </div>
           </div>
@@ -231,16 +257,16 @@
             <div class="card shadow-sm border-0">
               <div class="d-flex">
                 <div
-                  class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center"
+                  class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
                   style="height: 200px; border-right: 2px solid white"
                 >
-                  [Foto Antes]
+                  <span>[Foto Antes]</span>
                 </div>
                 <div
-                  class="bg-success text-white w-50 d-flex align-items-center justify-content-center"
+                  class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
                   style="height: 200px"
                 >
-                  [Foto Depois]
+                  <span>[Foto Depois]</span>
                 </div>
               </div>
               <div class="card-body text-center">
@@ -298,7 +324,7 @@
                   ajude na compra de ração e medicamentos.
                 </p>
                 <p class="fw-bold mb-0 mt-3">Chave PIX:</p>
-                <p class="fs-5">amoranimal@ong.com.br</p>
+                <p class="fs-5">49.671.733/0001-47</p>
               </div>
             </div>
           </div>
@@ -311,7 +337,7 @@
                   feiras de adoção e no dia a dia.
                 </p>
                 <a href="#" class="btn btn-outline-primary mt-2"
-                  >Falar no WhatsApp</a
+                  >Mandar mensagem no Instagram</a
                 >
               </div>
             </div>
@@ -332,7 +358,6 @@
                     >@amoranimal.cuiaba</a
                   >
                 </p>
-                <p class="mb-0"><strong>Telefone:</strong> (65) 99999-9999</p>
               </div>
             </div>
           </div>
