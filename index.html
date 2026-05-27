@@ -133,7 +133,11 @@
               class="bg-secondary text-white d-flex align-items-center justify-content-center rounded shadow"
               style="height: 300px"
             >
-              <span>imagem da ong</span>
+              <img
+                    src="img/teste.jpeg"
+                    alt="Vitória antes"
+                    class="w-100 h-100 object-fit-cover"
+                  />
             </div>
           </div>
         </div>
@@ -259,17 +263,25 @@
                   class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
                   style="height: 200px; border-right: 2px solid white"
                 >
-                  <span>[Foto Antes]</span>
+                  <img
+                    src="img/antes.jpeg"
+                    alt="Vitória antes"
+                    class="w-100 h-100 object-fit-cover"
+                  />
                 </div>
                 <div
                   class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
                   style="height: 200px"
                 >
-                  <span>[Foto Depois]</span>
+                  <img
+                    src="img/depois.jpeg"
+                    alt="Vitória antes"
+                    class="w-100 h-100 object-fit-cover"
+                  />
                 </div>
               </div>
               <div class="card-body text-center">
-                <h5 class="card-title">Cãozinho 3</h5>
+                <h5 class="card-title">Pretinha</h5>
               </div>
             </div>
           </div>
@@ -375,5 +387,62 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Inclusão do jQuery (referenciando o arquivo local do projeto) -->
+    <script src="jquery-4.0.0.min.js"></script>
+
+    <!-- Script de Animações com jQuery -->
+    <script>
+      $(document).ready(function() {
+        
+        // 1. Efeito de Smooth Scroll para os links do menu
+        $("a.nav-link").on('click', function(event) {
+          if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
+            
+            $('html, body').animate({
+              scrollTop: $(hash).offset().top - 70 // O -70 compensa a altura do menu fixo
+            }, 800);
+          }
+        });
+
+        // 2. Animação de entrada no Header (Hero)
+        $("header h1").hide().slideDown(1000);
+        $("header p").hide().fadeIn(2000);
+        $("header a.btn").hide().fadeIn(3000);
+
+        // 3. Efeito de Fade In nos elementos ao rolar a página
+        var $elementsToAnimate = $('.card, section h2, section p, .bg-secondary');
+
+        // Prepara os elementos escondendo e abaixando eles um pouco
+        $elementsToAnimate.css({ opacity: 0, position: 'relative', top: '40px' });
+
+        $(window).on('scroll', function() {
+          var windowBottom = $(window).scrollTop() + $(window).height();
+
+          $elementsToAnimate.each(function() {
+            var $el = $(this);
+            if ($el.offset().top < windowBottom - 50 && !$el.hasClass('animated')) {
+              $el.animate({ opacity: 1, top: '0px' }, 800);
+              $el.addClass('animated'); // Marca como animado para não repetir
+            }
+          });
+        });
+
+        // Dispara o evento de scroll uma vez no load para exibir elementos que já estejam visíveis
+        $(window).trigger('scroll');
+
+        // 4. Efeito de Hover nos cards ("O Que Fazemos" e "Como Ajudar")
+        $("#o-que-fazemos .card, #como-ajudar .card").hover(
+          function() {
+            $(this).stop(true, true).animate({ top: '-10px' }, 200).addClass('shadow-lg');
+          },
+          function() {
+            $(this).stop(true, true).animate({ top: '0px' }, 200).removeClass('shadow-lg');
+          }
+        );
+      });
+    </script>
   </body>
 </html>
