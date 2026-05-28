@@ -293,25 +293,52 @@
     <section id="patrocinios" class="py-5 bg-light">
       <div class="container text-center">
         <h2 class="fw-bold mb-5 text-primary">Nossos Patrocinadores</h2>
-        <div class="row justify-content-center align-items-center g-4">
-          <div class="col-6 col-md-3">
-            <div class="bg-white p-4 rounded shadow-sm border text-muted">
-              [Logo Patrocinador 1]
+        <div class="row justify-content-center g-4">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
+              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
+                <img src="img/medport_img.jpg" alt="Logo MedPort" class="w-100 h-100 object-fit-contain"/>
+              </div>
+              <div class="ms-3 text-start">
+                <h6 class="mb-1 fw-bold text-dark">MedPort</h6>
+                <a href="https://www.instagram.com/clinicamedport/" target="_blank" class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
+              </div>
             </div>
           </div>
-          <div class="col-6 col-md-3">
-            <div class="bg-white p-4 rounded shadow-sm border text-muted">
-              [Logo Patrocinador 2]
+          
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
+              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
+                <img src="img/petsee_img.jpg" alt="Logo PetSee" class="w-100 h-100 object-fit-contain"/>
+              </div>
+              <div class="ms-3 text-start">
+                <h6 class="mb-1 fw-bold text-dark">PetSee</h6>
+                <a href="https://www.instagram.com/petsee_pet/" target="_blank" class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
+              </div>
             </div>
           </div>
-          <div class="col-6 col-md-3">
-            <div class="bg-white p-4 rounded shadow-sm border text-muted">
-              [Logo Patrocinador 3]
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
+              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
+                <img src="img/petmarket_img.jpg" alt="Logo PetMarket" class="w-100 h-100 object-fit-contain"/>
+              </div>
+              <div class="ms-3 text-start">
+                <h6 class="mb-1 fw-bold text-dark">PetMarket</h6>
+                <a href="https://www.instagram.com/petmarketcuiaba/" target="_blank" class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
+              </div>
             </div>
           </div>
-          <div class="col-6 col-md-3">
-            <div class="bg-white p-4 rounded shadow-sm border text-muted">
-              [Logo Patrocinador 4]
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
+              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
+                <img src="img/mpmt_img.jpg" alt="Logo PetMarket" class="w-100 h-100 object-fit-contain"/>
+              </div>
+              <div class="ms-3 text-start">
+                <h6 class="mb-1 fw-bold text-dark">Ministério Público de Mato Grosso</h6>
+                <a href="https://www.instagram.com/mpemt/" target="_blank" class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
+              </div>
             </div>
           </div>
         </div>
@@ -433,8 +460,8 @@
         // Dispara o evento de scroll uma vez no load para exibir elementos que já estejam visíveis
         $(window).trigger('scroll');
 
-        // 4. Efeito de Hover nos cards ("O Que Fazemos" e "Como Ajudar")
-        $("#o-que-fazemos .card, #como-ajudar .card").hover(
+        // 4. Efeito de Hover nos cards ("O Que Fazemos", "Patrocínios" e "Como Ajudar")
+        $("#o-que-fazemos .card, #como-ajudar .card, .patrocinador-card").hover(
           function() {
             $(this).stop(true, true).animate({ top: '-10px' }, 200).addClass('shadow-lg');
           },
