@@ -1,475 +1,434 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amor Animal - Cuiabá</title>
-    <link rel="stylesheet" href="bootstrap.css" />
-    <link rel="icon" href="img/icon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="img/icon.ico" type="image/x-icon" />
-    <style>
-      :root {
-        /* Laranja (Predominante) */
-        --bs-primary: #ea7c23;
-        --bs-primary-rgb: 234, 124, 35;
 
-        /* Branco (Bege) */
-        --bs-light: #fdf2d6;
-        --bs-light-rgb: 253, 242, 214;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amor Animal - Cuiabá</title>
+  <link rel="stylesheet" href="bootstrap.css" />
+  <link rel="icon" href="img/icon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="img/icon.ico" type="image/x-icon" />
+  <style>
+    :root {
+      /* Laranja (Predominante) */
+      --bs-primary: #ea7c23;
+      --bs-primary-rgb: 234, 124, 35;
 
-        /* Preto */
-        --bs-dark: #181310;
-        --bs-dark-rgb: 24, 19, 16;
+      /* Branco (Bege) */
+      --bs-light: #fdf2d6;
+      --bs-light-rgb: 253, 242, 214;
 
-        /* Cor base do texto e tons secundários */
-        --bs-body-color: #181310;
-        --bs-body-color-rgb: 24, 19, 16;
-        --bs-secondary-color: rgba(24, 19, 16, 0.75);
-      }
-      .btn-primary {
-        --bs-btn-bg: #ea7c23;
-        --bs-btn-border-color: #ea7c23;
-        --bs-btn-hover-bg: #d36f1f;
-        --bs-btn-hover-border-color: #c6681d;
-        --bs-btn-active-bg: #c6681d;
-        --bs-btn-active-border-color: #b9621b;
-      }
-      .btn-outline-primary {
-        --bs-btn-color: #ea7c23;
-        --bs-btn-border-color: #ea7c23;
-        --bs-btn-hover-color: #fff;
-        --bs-btn-hover-bg: #ea7c23;
-        --bs-btn-hover-border-color: #ea7c23;
-        --bs-btn-active-bg: #ea7c23;
-        --bs-btn-active-border-color: #ea7c23;
-      }
-      .btn-light {
-        --bs-btn-color: #181310;
-        --bs-btn-bg: #fdf2d6;
-        --bs-btn-border-color: #fdf2d6;
-        --bs-btn-hover-color: #181310;
-        --bs-btn-hover-bg: #e6dac1;
-        --bs-btn-hover-border-color: #e6dac1;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Menu de Navegação -->
-    <nav
-      class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm"
-    >
-      <div class="container">
-        <a class="navbar-brand text-primary fw-bold d-flex align-items-center" href="#">
-          <img src="img/aaa.jpg" alt="Logo Amor Animal" height="40" class="me-2 object-fit-contain" />
-          Amor Animal
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#sobre">Sobre</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#o-que-fazemos">O que fazemos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#antes-depois">Antes e Depois</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#patrocinios">Patrocínios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#como-ajudar">Como Ajudar?</a>
-            </li>
-          </ul>
+      /* Preto */
+      --bs-dark: #181310;
+      --bs-dark-rgb: 24, 19, 16;
+
+      /* Cor base do texto e tons secundários */
+      --bs-body-color: #181310;
+      --bs-body-color-rgb: 24, 19, 16;
+      --bs-secondary-color: rgba(24, 19, 16, 0.75);
+    }
+
+    .btn-primary {
+      --bs-btn-bg: #ea7c23;
+      --bs-btn-border-color: #ea7c23;
+      --bs-btn-hover-bg: #d36f1f;
+      --bs-btn-hover-border-color: #c6681d;
+      --bs-btn-active-bg: #c6681d;
+      --bs-btn-active-border-color: #b9621b;
+    }
+
+    .btn-outline-primary {
+      --bs-btn-color: #ea7c23;
+      --bs-btn-border-color: #ea7c23;
+      --bs-btn-hover-color: #fff;
+      --bs-btn-hover-bg: #ea7c23;
+      --bs-btn-hover-border-color: #ea7c23;
+      --bs-btn-active-bg: #ea7c23;
+      --bs-btn-active-border-color: #ea7c23;
+    }
+
+    .btn-light {
+      --bs-btn-color: #181310;
+      --bs-btn-bg: #fdf2d6;
+      --bs-btn-border-color: #fdf2d6;
+      --bs-btn-hover-color: #181310;
+      --bs-btn-hover-bg: #e6dac1;
+      --bs-btn-hover-border-color: #e6dac1;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Menu de Navegação -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand text-primary fw-bold d-flex align-items-center" href="#">
+        <img src="img/aaa.jpg" alt="Logo Amor Animal" height="40" class="me-2 object-fit-contain" />
+        Amor Animal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#sobre">Sobre</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#o-que-fazemos">O que fazemos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#antes-depois">Antes e Depois</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#patrocinios">Patrocínios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#como-ajudar">Como Ajudar?</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Introdução (Hero) -->
+  <header class="bg-primary text-white text-center py-3">
+    <div class="container py-3">
+      <h1 class="display-4 fw-bold">Amor Animal</h1>
+      <p class="lead">
+        Resgatando e transformando a vida de animais em Cuiabá.
+      </p>
+      <a href="#como-ajudar" class="btn btn-light btn-lg mt-3">Quero Ajudar</a>
+    </div>
+  </header>
+
+  <!-- Seção: Sobre -->
+  <section id="sobre" class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h2 class="fw-bold mb-4 text-primary">Sobre a ONG</h2>
+          <p>
+            Há aproximadamente 5 anos atrás , alguns protetores independentes
+            se reuniram com o propósito de formar uma organização não
+            governamental (ONG) que tornasse possível assistir, com um pouco
+            mais de dignidade, cães em estado de abandono e vulnerabilidade.
+          </p>
+          <p>
+            A Associação Amor Animal atua como entidade que oferta serviços de
+            forma continuada, permanente e planejada, direcionados à prevenção
+            e mitigação da vulnerabilidade de animais abandonados, captando
+            doações de pessoas físicas e/ou jurídicas, dos setores privados
+            e/ou públicos e atua também de forma proativa com informações e
+            conhecimento sobre as causas e impactos negativos do abandono de
+            animais na sociedade.
+          </p>
         </div>
-      </div>
-    </nav>
-
-    <!-- Introdução (Hero) -->
-    <header class="bg-primary text-white text-center py-3">
-      <div class="container py-3">
-        <h1 class="display-4 fw-bold">Amor Animal</h1>
-        <p class="lead">
-          Resgatando e transformando a vida de animais em Cuiabá.
-        </p>
-        <a href="#como-ajudar" class="btn btn-light btn-lg mt-3"
-          >Quero Ajudar</a
-        >
-      </div>
-    </header>
-
-    <!-- Seção: Sobre -->
-    <section id="sobre" class="py-5">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-6">
-            <h2 class="fw-bold mb-4 text-primary">Sobre a ONG</h2>
-            <p>
-              Há aproximadamente 5 anos atrás , alguns protetores independentes
-              se reuniram com o propósito de formar uma organização não
-              governamental (ONG) que tornasse possível assistir, com um pouco
-              mais de dignidade, cães em estado de abandono e vulnerabilidade.
-            </p>
-            <p>
-              A Associação Amor Animal atua como entidade que oferta serviços de
-              forma continuada, permanente e planejada, direcionados à prevenção
-              e mitigação da vulnerabilidade de animais abandonados, captando
-              doações de pessoas físicas e/ou jurídicas, dos setores privados
-              e/ou públicos e atua também de forma proativa com informações e
-              conhecimento sobre as causas e impactos negativos do abandono de
-              animais na sociedade.
-            </p>
-          </div>
-          <div class="col-md-6 text-center mt-4 mt-md-0">
-            <div
-              class="bg-secondary text-white d-flex align-items-center justify-content-center rounded shadow"
-              style="height: 300px"
-            >
-              <img
-                    src="img/teste.jpeg"
-                    alt="Vitória antes"
-                    class="w-100 h-100 object-fit-cover"
-                  />
-            </div>
+        <div class="col-md-6 text-center mt-4 mt-md-0">
+          <div class="bg-secondary text-white d-flex align-items-center justify-content-center rounded shadow"
+            style="height: 300px">
+            <img src="img/teste.jpeg" alt="Vitória antes" class="w-100 h-100 object-fit-cover" />
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Seção: O que fazemos -->
-    <section id="o-que-fazemos" class="py-5 bg-light">
-      <div class="container">
-        <h2 class="fw-bold text-center mb-5 text-primary">O Que Fazemos</h2>
-        <div class="row g-4 text-center">
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-0">
-              <div class="card-body">
-                <h4 class="card-title text-primary">Resgate</h4>
-                <p class="card-text">
-                  Resgatamos animais em situação de rua, abandono ou maus-tratos
-                  na região de Cuiabá, tirando-os de situações de risco.
-                </p>
-              </div>
+  <!-- Seção: O que fazemos -->
+  <section id="o-que-fazemos" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="fw-bold text-center mb-5 text-primary">O Que Fazemos</h2>
+      <div class="row g-4 text-center">
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <h4 class="card-title text-primary">Resgate</h4>
+              <p class="card-text">
+                Resgatamos animais em situação de rua, abandono ou maus-tratos
+                na região de Cuiabá, tirando-os de situações de risco.
+              </p>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-0">
-              <div class="card-body">
-                <h4 class="card-title text-primary">Reabilitação</h4>
-                <p class="card-text">
-                  Oferecemos cuidados veterinários, vacinação, castração e muito
-                  amor para que eles se recuperem física e emocionalmente.
-                </p>
-              </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <h4 class="card-title text-primary">Reabilitação</h4>
+              <p class="card-text">
+                Oferecemos cuidados veterinários, vacinação, castração e muito
+                amor para que eles se recuperem física e emocionalmente.
+              </p>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-0">
-              <div class="card-body">
-                <h4 class="card-title text-primary">Adoção</h4>
-                <p class="card-text">
-                  Buscamos lares responsáveis e amorosos para que nossos animais
-                  resgatados tenham o final feliz que merecem.
-                </p>
-              </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <h4 class="card-title text-primary">Adoção</h4>
+              <p class="card-text">
+                Buscamos lares responsáveis e amorosos para que nossos animais
+                resgatados tenham o final feliz que merecem.
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Seção: Antes e Depois -->
-    <section id="antes-depois" class="py-5">
-      <div class="container">
-        <h2 class="fw-bold text-center mb-4 text-primary">Antes e Depois</h2>
-        <p class="text-center text-muted mb-5">
-          Veja a transformação incrível de alguns dos cães que passaram pelos
-          nossos cuidados.
-        </p>
-        <div class="row g-4">
-          <!-- Card 1 -->
-          <div class="col-md-6 col-lg-4">
-            <div class="card shadow-sm border-0">
-              <div class="d-flex">
-                <div
-                  class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                  style="height: 200px; border-right: 2px solid white"
-                >
-                  <img
-                    src="img/ne-antes.jpeg"
-                    alt="Negão antes"
-                    class="w-100 h-100 object-fit-cover"
-                  />
-                </div>
-                <div
-                  class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                  style="height: 200px"
-                >
-                  <img
-                    src="img/ne-depois.jpeg"
-                    alt="Negão depois"
-                    class="w-100 h-100 object-fit-cover"
-                  />
-                </div>
+  <!-- Seção: Antes e Depois -->
+  <section id="antes-depois" class="py-5">
+    <div class="container">
+      <h2 class="fw-bold text-center mb-4 text-primary">Antes e Depois</h2>
+      <p class="text-center text-muted mb-5">
+        Veja a transformação incrível de alguns dos cães que passaram pelos
+        nossos cuidados.
+      </p>
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card shadow-sm border-0">
+            <div class="d-flex">
+              <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                style="height: 200px; border-right: 2px solid white">
+                <img src="img/ne-antes.jpeg" alt="Negão antes" class="w-100 h-100 object-fit-cover" />
               </div>
-              <div class="card-body text-center">
-                <h5 class="card-title">Negão</h5>
+              <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                style="height: 200px">
+                <img src="img/ne-depois.jpeg" alt="Negão depois" class="w-100 h-100 object-fit-cover" />
               </div>
             </div>
-          </div>
-          <!-- Card 2 -->
-          <div class="col-md-6 col-lg-4">
-            <div class="card shadow-sm border-0">
-              <div class="d-flex">
-                <div
-                  class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                  style="height: 200px; border-right: 2px solid white"
-                >
-                  <img
-                    src="img/vi-antes.jpeg"
-                    alt="Vitória antes"
-                    class="w-100 h-100 object-fit-cover"
-                  />
-                </div>
-                <div
-                  class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                  style="height: 200px"
-                >
-                  <img
-                    src="img/vi-depois.jpeg"
-                    alt="Vitória depois"
-                    class="w-100 h-100 object-fit-cover"
-                  />
-                </div>
-              </div>
-              <div class="card-body text-center">
-                <h5 class="card-title">Vitória</h5>
-              </div>
+            <div class="card-body text-center">
+              <h5 class="card-title">Negão</h5>
             </div>
           </div>
-          <!-- Card 3 -->
-          <div class="col-md-6 col-lg-4">
-            <div class="card shadow-sm border-0">
-              <div class="d-flex">
-                <div
-                  class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                  style="height: 200px; border-right: 2px solid white"
-                >
-                  <img
-                    src="img/antes.jpeg"
-                    alt="Vitória antes"
-                    class="w-100 h-100 object-fit-cover"
-                  />
-                </div>
-                <div
-                  class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                  style="height: 200px"
-                >
-                  <img
-                    src="img/depois.jpeg"
-                    alt="Vitória antes"
-                    class="w-100 h-100 object-fit-cover"
-                  />
-                </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card shadow-sm border-0">
+            <div class="d-flex">
+              <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                style="height: 200px; border-right: 2px solid white">
+                <img src="img/vi-antes.jpeg" alt="Vitória antes" class="w-100 h-100 object-fit-cover" />
               </div>
-              <div class="card-body text-center">
-                <h5 class="card-title">Pretinha</h5>
+              <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                style="height: 200px">
+                <img src="img/vi-depois.jpeg" alt="Vitória depois" class="w-100 h-100 object-fit-cover" />
               </div>
+            </div>
+            <div class="card-body text-center">
+              <h5 class="card-title">Vitória</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card shadow-sm border-0">
+            <div class="d-flex">
+              <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                style="height: 200px; border-right: 2px solid white">
+                <img src="img/antes.jpeg" alt="Vitória antes" class="w-100 h-100 object-fit-cover" />
+              </div>
+              <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                style="height: 200px">
+                <img src="img/depois.jpeg" alt="Vitória antes" class="w-100 h-100 object-fit-cover" />
+              </div>
+            </div>
+            <div class="card-body text-center">
+              <h5 class="card-title">Pretinha</h5>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Seção: Patrocínios -->
-    <section id="patrocinios" class="py-5 bg-light">
-      <div class="container text-center">
-        <h2 class="fw-bold mb-5 text-primary">Nossos Patrocinadores</h2>
-        <div class="row justify-content-center g-4">
-          <div class="col-12 col-md-6 col-lg-3">
-            <div class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
-              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
-                <img src="img/medport_img.jpg" alt="Logo MedPort" class="w-100 h-100 object-fit-contain"/>
-              </div>
-              <div class="ms-3 text-start">
-                <h6 class="mb-1 fw-bold text-dark">MedPort</h6>
-                <a href="https://www.instagram.com/clinicamedport/" target="_blank" class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
-              </div>
+  <!-- Seção: Patrocínios -->
+  <section id="patrocinios" class="py-5 bg-light">
+    <div class="container text-center">
+      <h2 class="fw-bold mb-5 text-primary">Nossos Patrocinadores</h2>
+      <div class="row justify-content-center g-4">
+        <div class="col-12 col-md-6 col-lg-3">
+          <div
+            class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
+            <div class="flex-shrink-0" style="width: 70px; height: 70px;">
+              <img src="img/medport_img.jpg" alt="Logo MedPort" class="w-100 h-100 object-fit-contain" />
+            </div>
+            <div class="ms-3 text-start">
+              <h6 class="mb-1 fw-bold text-dark">MedPort</h6>
+              <a href="https://www.instagram.com/clinicamedport/" target="_blank"
+                class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
             </div>
           </div>
-          
-          <div class="col-12 col-md-6 col-lg-3">
-            <div class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
-              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
-                <img src="img/petsee_img.jpg" alt="Logo PetSee" class="w-100 h-100 object-fit-contain"/>
-              </div>
-              <div class="ms-3 text-start">
-                <h6 class="mb-1 fw-bold text-dark">PetSee</h6>
-                <a href="https://www.instagram.com/petsee_pet/" target="_blank" class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
-              </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <div
+            class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
+            <div class="flex-shrink-0" style="width: 70px; height: 70px;">
+              <img src="img/petsee_img.jpg" alt="Logo PetSee" class="w-100 h-100 object-fit-contain" />
+            </div>
+            <div class="ms-3 text-start">
+              <h6 class="mb-1 fw-bold text-dark">PetSee</h6>
+              <a href="https://www.instagram.com/petsee_pet/" target="_blank"
+                class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
             </div>
           </div>
+        </div>
 
-          <div class="col-12 col-md-6 col-lg-3">
-            <div class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
-              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
-                <img src="img/petmarket_img.jpg" alt="Logo PetMarket" class="w-100 h-100 object-fit-contain"/>
-              </div>
-              <div class="ms-3 text-start">
-                <h6 class="mb-1 fw-bold text-dark">PetMarket</h6>
-                <a href="https://www.instagram.com/petmarketcuiaba/" target="_blank" class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
-              </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div
+            class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
+            <div class="flex-shrink-0" style="width: 70px; height: 70px;">
+              <img src="img/petmarket_img.jpg" alt="Logo PetMarket" class="w-100 h-100 object-fit-contain" />
+            </div>
+            <div class="ms-3 text-start">
+              <h6 class="mb-1 fw-bold text-dark">PetMarket</h6>
+              <a href="https://www.instagram.com/petmarketcuiaba/" target="_blank"
+                class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
             </div>
           </div>
+        </div>
 
-          <div class="col-12 col-md-6 col-lg-3">
-            <div class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
-              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
-                <img src="img/mpmt_img.jpg" alt="Logo PetMarket" class="w-100 h-100 object-fit-contain"/>
-              </div>
-              <div class="ms-3 text-start">
-                <h6 class="mb-1 fw-bold text-dark">Ministério Público de Mato Grosso</h6>
-                <a href="https://www.instagram.com/mpemt/" target="_blank" class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
-              </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div
+            class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
+            <div class="flex-shrink-0" style="width: 70px; height: 70px;">
+              <img src="img/mpmt_img.jpg" alt="Logo PetMarket" class="w-100 h-100 object-fit-contain" />
+            </div>
+            <div class="ms-3 text-start">
+              <h6 class="mb-1 fw-bold text-dark">Ministério Público de Mato Grosso</h6>
+              <a href="https://www.instagram.com/mpemt/" target="_blank"
+                class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Seção: Como Ajudar? -->
-    <section id="como-ajudar" class="py-5 bg-primary text-white text-center">
-      <div class="container">
-        <h2 class="fw-bold mb-4">Como Ajudar?</h2>
-        <p class="lead mb-5">
-          O seu apoio é fundamental para continuarmos salvando vidas.
-        </p>
-        <div class="row g-4 justify-content-center">
-          <div class="col-md-4">
-            <div class="card text-dark h-100 shadow border-0">
-              <div class="card-body py-4">
-                <h4 class="card-title text-primary">Doações</h4>
-                <p class="card-text">
-                  Faça uma contribuição financeira via PIX ou transferência e
-                  ajude na compra de ração e medicamentos.
-                </p>
-                <p class="fw-bold mb-0 mt-3">Chave PIX:</p>
-                <p class="fs-5">49.671.733/0001-47</p>
-              </div>
+  <!-- Seção: Como Ajudar? -->
+  <section id="como-ajudar" class="py-5 bg-primary text-white text-center">
+    <div class="container">
+      <h2 class="fw-bold mb-4">Como Ajudar?</h2>
+      <p class="lead mb-5">
+        O seu apoio é fundamental para continuarmos salvando vidas.
+      </p>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+          <div class="card text-dark h-100 shadow border-0">
+            <div class="card-body py-4">
+              <h4 class="card-title text-primary">Doações</h4>
+              <p class="card-text">
+                Faça uma contribuição financeira via PIX ou transferência e
+                ajude na compra de ração e medicamentos.
+              </p>
+              <p class="fw-bold mb-0 mt-3">Chave PIX:</p>
+              <p class="fs-5">49.671.733/0001-47</p>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card text-dark h-100 shadow border-0">
-              <div class="card-body py-4">
-                <h4 class="card-title text-primary">Seja Voluntário</h4>
-                <p class="card-text">
-                  Precisamos de mãos dispostas a ajudar em nossos eventos,
-                  feiras de adoção e no dia a dia.
-                </p>
-                <a href="#" class="btn btn-outline-primary mt-2"
-                  >Mandar mensagem no Instagram</a
-                >
-              </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card text-dark h-100 shadow border-0">
+            <div class="card-body py-4">
+              <h4 class="card-title text-primary">Seja Voluntário</h4>
+              <p class="card-text">
+                Precisamos de mãos dispostas a ajudar em nossos eventos,
+                feiras de adoção e no dia a dia.
+              </p>
+              <a href="https://www.instagram.com/amoranimal.cuiaba" class="btn btn-outline-primary mt-2"
+                target="_blank">Mandar mensagem no Instagram</a>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card text-dark h-100 shadow border-0">
-              <div class="card-body py-4">
-                <h4 class="card-title text-primary">Contato</h4>
-                <p class="card-text">
-                  Acompanhe nossas redes sociais, mande uma mensagem e ajude a
-                  divulgar nosso trabalho.
-                </p>
-                <p class="mb-1 mt-3">
-                  <strong>Instagram:</strong>
-                  <a
-                    href="https://www.instagram.com/amoranimal.cuiaba"
-                    target="_blank"
-                    >@amoranimal.cuiaba</a
-                  >
-                  <p><strong>Telefone:</strong> (65) 9 8119-3351</p>
-                </p>
-              </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card text-dark h-100 shadow border-0">
+            <div class="card-body py-4">
+              <h4 class="card-title text-primary">Contato</h4>
+              <p class="card-text">
+                Acompanhe nossas redes sociais, mande uma mensagem e ajude a
+                divulgar nosso trabalho.
+              </p>
+              <p class="mb-1 mt-3">
+                <strong>Instagram:</strong>
+                <a href="https://www.instagram.com/amoranimal.cuiaba" target="_blank">@amoranimal.cuiaba</a>
+              <p><strong>Telefone:</strong><a href="https://wa.me/5565981193351?text=Ol%C3%A1%2C%20vim%20do%20site%21"
+                  target="_blank"> (65) 9 8119-3351</a></p>
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Rodapé -->
-    <footer class="bg-dark text-white text-center py-4">
-      <div class="container">
-        <p class="mb-0">
-          &copy; 2026 ONG Amor Animal - Cuiabá. Todos os direitos reservados.
-        </p>
-      </div>
-    </footer>
+  <!-- Rodapé -->
+  <footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+      <p class="mb-0">
+        &copy; 2026 ONG Amor Animal - Cuiabá. Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Inclusão do jQuery (referenciando o arquivo local do projeto) -->
-    <script src="jquery-4.0.0.min.js"></script>
+  <!-- Inclusão do jQuery (referenciando o arquivo local do projeto) -->
+  <script src="jquery-4.0.0.min.js"></script>
 
-    <!-- Script de Animações com jQuery -->
-    <script>
-      $(document).ready(function() {
-        
-        // 1. Efeito de Smooth Scroll para os links do menu
-        $("a.nav-link").on('click', function(event) {
-          if (this.hash !== "") {
-            event.preventDefault();
-            var hash = this.hash;
-            
-            $('html, body').animate({
-              scrollTop: $(hash).offset().top - 70 // O -70 compensa a altura do menu fixo
-            }, 800);
-          }
-        });
+  <!-- Script de Animações com jQuery -->
+  <script>
+    $(document).ready(function () {
 
-        // 2. Animação de entrada no Header (Hero)
-        $("header h1").hide().slideDown(1000);
-        $("header p").hide().fadeIn(2000);
-        $("header a.btn").hide().fadeIn(3000);
+      // 1. Efeito de Smooth Scroll para os links do menu
+      $("a.nav-link").on('click', function (event) {
+        if (this.hash !== "") {
+          event.preventDefault();
+          var hash = this.hash;
 
-        // 3. Efeito de Fade In nos elementos ao rolar a página
-        var $elementsToAnimate = $('.card, section h2, section p, .bg-secondary');
-
-        // Prepara os elementos escondendo e abaixando eles um pouco
-        $elementsToAnimate.css({ opacity: 0, position: 'relative', top: '40px' });
-
-        $(window).on('scroll', function() {
-          var windowBottom = $(window).scrollTop() + $(window).height();
-
-          $elementsToAnimate.each(function() {
-            var $el = $(this);
-            if ($el.offset().top < windowBottom - 50 && !$el.hasClass('animated')) {
-              $el.animate({ opacity: 1, top: '0px' }, 800);
-              $el.addClass('animated'); // Marca como animado para não repetir
-            }
-          });
-        });
-
-        // Dispara o evento de scroll uma vez no load para exibir elementos que já estejam visíveis
-        $(window).trigger('scroll');
-
-        // 4. Efeito de Hover nos cards ("O Que Fazemos", "Patrocínios" e "Como Ajudar")
-        $("#o-que-fazemos .card, #como-ajudar .card, .patrocinador-card").hover(
-          function() {
-            $(this).stop(true, true).animate({ top: '-10px' }, 200).addClass('shadow-lg');
-          },
-          function() {
-            $(this).stop(true, true).animate({ top: '0px' }, 200).removeClass('shadow-lg');
-          }
-        );
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top - 70 // O -70 compensa a altura do menu fixo
+          }, 800);
+        }
       });
-    </script>
-  </body>
+
+      // 2. Animação de entrada no Header (Hero)
+      $("header h1").hide().slideDown(1000);
+      $("header p").hide().fadeIn(2000);
+      $("header a.btn").hide().fadeIn(3000);
+
+      // 3. Efeito de Fade In nos elementos ao rolar a página
+      var $elementsToAnimate = $('.card, section h2, section p, .bg-secondary');
+
+      // Prepara os elementos escondendo e abaixando eles um pouco
+      $elementsToAnimate.css({ opacity: 0, position: 'relative', top: '40px' });
+
+      $(window).on('scroll', function () {
+        var windowBottom = $(window).scrollTop() + $(window).height();
+
+        $elementsToAnimate.each(function () {
+          var $el = $(this);
+          if ($el.offset().top < windowBottom - 50 && !$el.hasClass('animated')) {
+            $el.animate({ opacity: 1, top: '0px' }, 800);
+            $el.addClass('animated'); // Marca como animado para não repetir
+          }
+        });
+      });
+
+      // Dispara o evento de scroll uma vez no load para exibir elementos que já estejam visíveis
+      $(window).trigger('scroll');
+
+      // 4. Efeito de Hover nos cards ("O Que Fazemos", "Patrocínios" e "Como Ajudar")
+      $("#o-que-fazemos .card, #como-ajudar .card, .patrocinador-card").hover(
+        function () {
+          $(this).stop(true, true).animate({ top: '-10px' }, 200).addClass('shadow-lg');
+        },
+        function () {
+          $(this).stop(true, true).animate({ top: '0px' }, 200).removeClass('shadow-lg');
+        }
+      );
+    });
+  </script>
+</body>
+
 </html>
