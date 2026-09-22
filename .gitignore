@@ -1,0 +1,21 @@
+# Ambiente virtual
+.venv/
+env/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+
+# Credenciais e variáveis de ambiente
+.env
+firebase_credentials.json
+
+# Arquivos coletados
+staticfiles/
+
+# VS Code / IDE
+.vscode/
+.idea/

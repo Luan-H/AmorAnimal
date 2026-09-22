@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="pt-BR">
 
@@ -5,9 +6,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amor Animal - Cuiabá</title>
-  <link rel="stylesheet" href="bootstrap.css" />
-  <link rel="icon" href="img/icon.ico" type="image/x-icon" />
-  <link rel="shortcut icon" href="img/icon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+  <link rel="icon" href="{% static 'img/icon.ico' %}" type="image/x-icon" />
+  <link rel="shortcut icon" href="{% static 'img/icon.ico' %}" type="image/x-icon" />
   <style>
     :root {
       /* Laranja (Predominante) */
@@ -63,7 +64,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
     <div class="container">
       <a class="navbar-brand text-primary fw-bold d-flex align-items-center" href="#">
-        <img src="img/aaa.jpg" alt="Logo Amor Animal" height="40" class="me-2 object-fit-contain" />
+        <img src="{% static 'img/aaa.jpg' %}" alt="Logo Amor Animal" height="40" class="me-2 object-fit-contain" />
         Amor Animal
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -127,7 +128,7 @@
         <div class="col-md-6 text-center mt-4 mt-md-0">
           <div class="bg-secondary text-white d-flex align-items-center justify-content-center rounded shadow"
             style="height: 300px">
-            <img src="img/teste.jpeg" alt="Vitória antes" class="w-100 h-100 object-fit-cover" />
+            <img src="{% static 'img/teste.jpeg' %}" alt="Equipe Amor Animal" class="w-100 h-100 object-fit-cover" />
           </div>
         </div>
       </div>
@@ -185,60 +186,93 @@
         nossos cuidados.
       </p>
       <div class="row g-4">
-        <!-- Card 1 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm border-0">
-            <div class="d-flex">
-              <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                style="height: 200px; border-right: 2px solid white">
-                <img src="img/ne-antes.jpeg" alt="Negão antes" class="w-100 h-100 object-fit-cover" />
-              </div>
-              <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                style="height: 200px">
-                <img src="img/ne-depois.jpeg" alt="Negão depois" class="w-100 h-100 object-fit-cover" />
-              </div>
-            </div>
-            <div class="card-body text-center">
-              <h5 class="card-title">Negão</h5>
-            </div>
-          </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm border-0">
-            <div class="d-flex">
-              <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                style="height: 200px; border-right: 2px solid white">
-                <img src="img/vi-antes.jpeg" alt="Vitória antes" class="w-100 h-100 object-fit-cover" />
-              </div>
-              <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                style="height: 200px">
-                <img src="img/vi-depois.jpeg" alt="Vitória depois" class="w-100 h-100 object-fit-cover" />
-              </div>
-            </div>
-            <div class="card-body text-center">
-              <h5 class="card-title">Vitória</h5>
-            </div>
-          </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow-sm border-0">
-            <div class="d-flex">
-              <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                style="height: 200px; border-right: 2px solid white">
-                <img src="img/antes.jpeg" alt="Vitória antes" class="w-100 h-100 object-fit-cover" />
-              </div>
-              <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                style="height: 200px">
-                <img src="img/depois.jpeg" alt="Vitória antes" class="w-100 h-100 object-fit-cover" />
+        {% if animais %}
+          {% for animal in animais %}
+            <div class="col-md-6 col-lg-4">
+              <div class="card shadow-sm border-0">
+                <div class="d-flex">
+                  <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                    style="height: 200px; border-right: 2px solid white">
+                    {% if animal.foto_antes_url %}
+                      <img src="{{ animal.foto_antes_url }}" alt="{{ animal.nome }} antes" class="w-100 h-100 object-fit-cover" />
+                    {% else %}
+                      <span class="small">Antes</span>
+                    {% endif %}
+                  </div>
+                  <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                    style="height: 200px">
+                    {% if animal.foto_depois_url %}
+                      <img src="{{ animal.foto_depois_url }}" alt="{{ animal.nome }} depois" class="w-100 h-100 object-fit-cover" />
+                    {% else %}
+                      <span class="small">Depois</span>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title mb-1">{{ animal.nome }}</h5>
+                  {% if animal.historia %}
+                    <p class="text-muted small mb-0">{{ animal.historia|truncatewords:15 }}</p>
+                  {% endif %}
+                </div>
               </div>
             </div>
-            <div class="card-body text-center">
-              <h5 class="card-title">Pretinha</h5>
+          {% endfor %}
+        {% else %}
+          <!-- Cards padrão (fallback estático) -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm border-0">
+              <div class="d-flex">
+                <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                  style="height: 200px; border-right: 2px solid white">
+                  <img src="{% static 'img/ne-antes.jpeg' %}" alt="Negão antes" class="w-100 h-100 object-fit-cover" />
+                </div>
+                <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                  style="height: 200px">
+                  <img src="{% static 'img/ne-depois.jpeg' %}" alt="Negão depois" class="w-100 h-100 object-fit-cover" />
+                </div>
+              </div>
+              <div class="card-body text-center">
+                <h5 class="card-title">Negão</h5>
+              </div>
             </div>
           </div>
-        </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm border-0">
+              <div class="d-flex">
+                <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                  style="height: 200px; border-right: 2px solid white">
+                  <img src="{% static 'img/vi-antes.jpeg' %}" alt="Vitória antes" class="w-100 h-100 object-fit-cover" />
+                </div>
+                <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                  style="height: 200px">
+                  <img src="{% static 'img/vi-depois.jpeg' %}" alt="Vitória depois" class="w-100 h-100 object-fit-cover" />
+                </div>
+              </div>
+              <div class="card-body text-center">
+                <h5 class="card-title">Vitória</h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm border-0">
+              <div class="d-flex">
+                <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                  style="height: 200px; border-right: 2px solid white">
+                  <img src="{% static 'img/antes.jpeg' %}" alt="Pretinha antes" class="w-100 h-100 object-fit-cover" />
+                </div>
+                <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                  style="height: 200px">
+                  <img src="{% static 'img/depois.jpeg' %}" alt="Pretinha depois" class="w-100 h-100 object-fit-cover" />
+                </div>
+              </div>
+              <div class="card-body text-center">
+                <h5 class="card-title">Pretinha</h5>
+              </div>
+            </div>
+          </div>
+        {% endif %}
       </div>
     </div>
   </section>
@@ -248,61 +282,88 @@
     <div class="container text-center">
       <h2 class="fw-bold mb-5 text-primary">Nossos Patrocinadores</h2>
       <div class="row justify-content-center g-4">
-        <div class="col-12 col-md-6 col-lg-3">
-          <div
-            class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
-            <div class="flex-shrink-0" style="width: 70px; height: 70px;">
-              <img src="img/medport_img.jpg" alt="Logo MedPort" class="w-100 h-100 object-fit-contain" />
+        {% if patrocinadores %}
+          {% for pat in patrocinadores %}
+            <div class="col-12 col-md-6 col-lg-3">
+              <div
+                class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
+                <div class="flex-shrink-0" style="width: 70px; height: 70px;">
+                  {% if pat.logotipo_url %}
+                    <img src="{{ pat.logotipo_url }}" alt="Logo {{ pat.nome }}" class="w-100 h-100 object-fit-contain" />
+                  {% else %}
+                    <div class="w-100 h-100 bg-light rounded d-flex align-items-center justify-content-center text-muted fw-bold">
+                      {{ pat.nome|slice:":2"|upper }}
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="ms-3 text-start">
+                  <h6 class="mb-1 fw-bold text-dark">{{ pat.nome }}</h6>
+                  {% if pat.link_externo %}
+                    <a href="{{ pat.link_externo }}" target="_blank"
+                      class="text-decoration-none small text-primary fw-semibold">Visitar Perfil</a>
+                  {% endif %}
+                </div>
+              </div>
             </div>
-            <div class="ms-3 text-start">
-              <h6 class="mb-1 fw-bold text-dark">MedPort</h6>
-              <a href="https://www.instagram.com/clinicamedport/" target="_blank"
-                class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
+          {% endfor %}
+        {% else %}
+          <!-- Patrocinadores padrão (fallback estático) -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <div
+              class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
+              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
+                <img src="{% static 'img/medport_img.jpg' %}" alt="Logo MedPort" class="w-100 h-100 object-fit-contain" />
+              </div>
+              <div class="ms-3 text-start">
+                <h6 class="mb-1 fw-bold text-dark">MedPort</h6>
+                <a href="https://www.instagram.com/clinicamedport/" target="_blank"
+                  class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-12 col-md-6 col-lg-3">
-          <div
-            class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
-            <div class="flex-shrink-0" style="width: 70px; height: 70px;">
-              <img src="img/petsee_img.jpg" alt="Logo PetSee" class="w-100 h-100 object-fit-contain" />
-            </div>
-            <div class="ms-3 text-start">
-              <h6 class="mb-1 fw-bold text-dark">PetSee</h6>
-              <a href="https://www.instagram.com/petsee_pet/" target="_blank"
-                class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div
+              class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
+              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
+                <img src="{% static 'img/petsee_img.jpg' %}" alt="Logo PetSee" class="w-100 h-100 object-fit-contain" />
+              </div>
+              <div class="ms-3 text-start">
+                <h6 class="mb-1 fw-bold text-dark">PetSee</h6>
+                <a href="https://www.instagram.com/petsee_pet/" target="_blank"
+                  class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-12 col-md-6 col-lg-3">
-          <div
-            class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
-            <div class="flex-shrink-0" style="width: 70px; height: 70px;">
-              <img src="img/petmarket_img.jpg" alt="Logo PetMarket" class="w-100 h-100 object-fit-contain" />
-            </div>
-            <div class="ms-3 text-start">
-              <h6 class="mb-1 fw-bold text-dark">PetMarket</h6>
-              <a href="https://www.instagram.com/petmarketcuiaba/" target="_blank"
-                class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div
+              class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
+              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
+                <img src="{% static 'img/petmarket_img.jpg' %}" alt="Logo PetMarket" class="w-100 h-100 object-fit-contain" />
+              </div>
+              <div class="ms-3 text-start">
+                <h6 class="mb-1 fw-bold text-dark">PetMarket</h6>
+                <a href="https://www.instagram.com/petmarketcuiaba/" target="_blank"
+                  class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-12 col-md-6 col-lg-3">
-          <div
-            class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
-            <div class="flex-shrink-0" style="width: 70px; height: 70px;">
-              <img src="img/mpmt_img.jpg" alt="Logo PetMarket" class="w-100 h-100 object-fit-contain" />
-            </div>
-            <div class="ms-3 text-start">
-              <h6 class="mb-1 fw-bold text-dark">Ministério Público de Mato Grosso</h6>
-              <a href="https://www.instagram.com/mpemt/" target="_blank"
-                class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div
+              class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
+              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
+                <img src="{% static 'img/mpmt_img.jpg' %}" alt="Logo Ministério Público MT" class="w-100 h-100 object-fit-contain" />
+              </div>
+              <div class="ms-3 text-start">
+                <h6 class="mb-1 fw-bold text-dark">Ministério Público de Mato Grosso</h6>
+                <a href="https://www.instagram.com/mpemt/" target="_blank"
+                  class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
+              </div>
             </div>
           </div>
-        </div>
+        {% endif %}
       </div>
     </div>
   </section>
@@ -349,12 +410,17 @@
                 Acompanhe nossas redes sociais, mande uma mensagem e ajude a
                 divulgar nosso trabalho.
               </p>
-              <p class="mb-1 mt-3">
-                <strong>Instagram:</strong>
-                <a href="https://www.instagram.com/amoranimal.cuiaba" target="_blank">@amoranimal.cuiaba</a>
-              <p><strong>Telefone:</strong><a href="https://wa.me/5565981193351?text=Ol%C3%A1%2C%20vim%20do%20site%21"
-                  target="_blank"> (65) 9 8119-3351</a></p>
-              </p>
+              <div class="mt-3">
+                <p class="mb-1">
+                  <strong>Instagram:</strong>
+                  <a href="https://www.instagram.com/amoranimal.cuiaba" target="_blank" class="text-primary fw-semibold">@amoranimal.cuiaba</a>
+                </p>
+                <p class="mb-0">
+                  <strong>Telefone:</strong>
+                  <a href="https://wa.me/5565981193351?text=Ol%C3%A1%2C%20vim%20do%20site%21"
+                    target="_blank" class="text-primary fw-semibold"> (65) 9 8119-3351</a>
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -373,8 +439,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Inclusão do jQuery (referenciando o arquivo local do projeto) -->
-  <script src="jquery-4.0.0.min.js"></script>
+  <!-- Inclusão do jQuery (arquivo local servido pelo Django) -->
+  <script src="{% static 'js/jquery-4.0.0.min.js' %}"></script>
 
   <!-- Script de Animações com jQuery -->
   <script>
