@@ -12,6 +12,7 @@ __pycache__/
 # Credenciais e variáveis de ambiente
 .env
 firebase_credentials.json
+*-firebase-adminsdk-*.json
 
 # Arquivos coletados
 staticfiles/

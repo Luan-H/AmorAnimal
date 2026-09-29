@@ -1,0 +1,65 @@
+{% extends 'painel/base_painel.html' %}
+
+{% block title %}Patrocinadores - Painel Amor Animal{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+  <div>
+    <h2 class="fw-bold mb-1">Nossos Patrocinadores</h2>
+    <p class="text-muted mb-0">Gerencie as empresas e instituições parceiras que apoiam a ONG.</p>
+  </div>
+  <a href="{% url 'core:patrocinador_create' %}" class="btn btn-primary d-flex align-items-center gap-2">
+    <i class="bi bi-plus-circle"></i> Adicionar Patrocinador
+  </a>
+</div>
+
+{% if patrocinadores %}
+  <div class="row g-4">
+    {% for pat in patrocinadores %}
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <div class="card shadow-sm border-0 h-100 rounded-3 p-3 bg-white text-center d-flex flex-column justify-content-between">
+          <div>
+            <div class="mx-auto rounded p-2 mb-3 bg-light d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+              {% if pat.logotipo_url %}
+                <img src="{{ pat.logotipo_url }}" alt="Logo {{ pat.nome }}" class="w-100 h-100 object-fit-contain">
+              {% else %}
+                <span class="fs-4 fw-bold text-muted">{{ pat.nome|slice:":2"|upper }}</span>
+              {% endif %}
+            </div>
+
+            <h5 class="fw-bold mb-1">{{ pat.nome }}</h5>
+            
+            {% if pat.link_externo %}
+              <a href="{{ pat.link_externo }}" target="_blank" class="small text-decoration-none text-primary fw-semibold d-inline-block mb-3">
+                <i class="bi bi-link-45deg"></i> Ver Instagram/Link
+              </a>
+            {% else %}
+              <span class="small text-muted d-block mb-3">Sem link cadastrado</span>
+            {% endif %}
+          </div>
+
+          <div class="pt-2 border-top">
+            <form method="POST" action="{% url 'core:patrocinador_delete' pat.id %}" onsubmit="return confirm('Deseja realmente remover o patrocinador {{ pat.nome }}?');">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-sm btn-outline-danger w-100 d-flex align-items-center justify-content-center gap-1">
+                <i class="bi bi-trash"></i> Remover
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="card shadow-sm border-0 p-5 text-center bg-white">
+    <i class="bi bi-briefcase text-muted fs-1 mb-3"></i>
+    <h4>Nenhum patrocinador cadastrado ainda!</h4>
+    <p class="text-muted">Adicione os parceiros da ONG para que a logomarca apareça no rodapé da página inicial.</p>
+    <div>
+      <a href="{% url 'core:patrocinador_create' %}" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-1"></i> Adicionar Primeiro Patrocinador
+      </a>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}

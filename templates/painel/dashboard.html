@@ -1,0 +1,184 @@
+{% extends 'painel/base_painel.html' %}
+
+{% block title %}Dashboard - Amor Animal{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+  <div>
+    <h2 class="fw-bold mb-1">Visão Geral</h2>
+    <p class="text-muted mb-0">Bem-vindo(a) ao painel de gerenciamento da Amor Animal Cuiabá.</p>
+  </div>
+  <div class="d-flex gap-2">
+    <a href="{% url 'core:animal_create' %}" class="btn btn-primary d-flex align-items-center gap-2">
+      <i class="bi bi-plus-circle"></i> Novo Animal
+    </a>
+    <a href="{% url 'core:patrocinador_create' %}" class="btn btn-outline-dark d-flex align-items-center gap-2">
+      <i class="bi bi-plus-circle"></i> Novo Patrocinador
+    </a>
+  </div>
+</div>
+
+<!-- Cartões de Métricas -->
+<div class="row g-3 mb-4">
+  <div class="col-12 col-sm-6 col-xl-3">
+    <div class="card card-stat shadow-sm p-3 bg-white">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <span class="text-muted small fw-semibold">TOTAL DE ANIMAIS</span>
+          <h3 class="fw-bold mb-0 mt-1">{{ total_animais }}</h3>
+        </div>
+        <div class="rounded-circle bg-warning bg-opacity-10 p-3 text-warning">
+          <i class="bi bi-heart-pulse fs-3"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-sm-6 col-xl-3">
+    <div class="card card-stat shadow-sm p-3 bg-white">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <span class="text-muted small fw-semibold">DISPONÍVEIS P/ ADOÇÃO</span>
+          <h3 class="fw-bold mb-0 mt-1 text-primary">{{ disponiveis }}</h3>
+        </div>
+        <div class="rounded-circle bg-primary bg-opacity-10 p-3 text-primary">
+          <i class="bi bi-stars fs-3"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-sm-6 col-xl-3">
+    <div class="card card-stat shadow-sm p-3 bg-white">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <span class="text-muted small fw-semibold">FINAIS FELIZES (ADOTADOS)</span>
+          <h3 class="fw-bold mb-0 mt-1 text-success">{{ adotados }}</h3>
+        </div>
+        <div class="rounded-circle bg-success bg-opacity-10 p-3 text-success">
+          <i class="bi bi-house-heart fs-3"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-sm-6 col-xl-3">
+    <div class="card card-stat shadow-sm p-3 bg-white">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <span class="text-muted small fw-semibold">PATROCINADORES</span>
+          <h3 class="fw-bold mb-0 mt-1 text-info">{{ total_patrocinadores }}</h3>
+        </div>
+        <div class="rounded-circle bg-info bg-opacity-10 p-3 text-info">
+          <i class="bi bi-briefcase fs-3"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Listagem Rápida -->
+<div class="row g-4">
+  <div class="col-12 col-lg-7">
+    <div class="card shadow-sm border-0 rounded-3 p-4 bg-white h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0">Últimos Cãezinhos Cadastrados</h5>
+        <a href="{% url 'core:animal_list' %}" class="small text-decoration-none text-primary fw-semibold">Ver todos &rarr;</a>
+      </div>
+
+      {% if ultimos_animais %}
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>Animal</th>
+                <th>Status</th>
+                <th class="text-end">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for animal in ultimos_animais %}
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      {% if animal.foto_depois_url %}
+                        <img src="{{ animal.foto_depois_url }}" class="rounded me-2 object-fit-cover" width="45" height="45">
+                      {% elif animal.foto_antes_url %}
+                        <img src="{{ animal.foto_antes_url }}" class="rounded me-2 object-fit-cover" width="45" height="45">
+                      {% else %}
+                        <div class="rounded bg-light me-2 d-flex align-items-center justify-content-center" style="width:45px; height:45px;">
+                          <i class="bi bi-image text-muted"></i>
+                        </div>
+                      {% endif %}
+                      <div>
+                        <span class="fw-bold d-block">{{ animal.nome }}</span>
+                        <small class="text-muted">{{ animal.historia|truncatewords:6|default:"Sem histórico cadastrado" }}</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    {% if animal.status_adocao == 'Adotado' %}
+                      <span class="badge bg-success badge-status">Adotado</span>
+                    {% elif animal.status_adocao == 'Em Tratamento' %}
+                      <span class="badge bg-warning text-dark badge-status">Em Tratamento</span>
+                    {% else %}
+                      <span class="badge bg-primary badge-status">Disponível</span>
+                    {% endif %}
+                  </td>
+                  <td class="text-end">
+                    <a href="{% url 'core:animal_edit' animal.id %}" class="btn btn-sm btn-outline-secondary">
+                      <i class="bi bi-pencil"></i>
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div class="text-center py-5 text-muted">
+          <i class="bi bi-heartbreak fs-1 d-block mb-2"></i>
+          Nenhum animal cadastrado ainda no banco.
+          <div class="mt-3">
+            <a href="{% url 'core:animal_create' %}" class="btn btn-sm btn-primary">Cadastrar o primeiro cãozinho</a>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-5">
+    <div class="card shadow-sm border-0 rounded-3 p-4 bg-white h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0">Solicitações de Adoção</h5>
+        <a href="{% url 'core:adocao_list' %}" class="small text-decoration-none text-primary fw-semibold">Ver todas &rarr;</a>
+      </div>
+
+      {% if ultimas_adocoes %}
+        <div class="list-group list-group-flush">
+          {% for adocao in ultimas_adocoes %}
+            <div class="list-group-item px-0 py-3">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <h6 class="mb-1 fw-bold">{{ adocao.nome_interessado }}</h6>
+                  <p class="text-muted small mb-1">Interesse em: <strong>{{ adocao.animal_nome }}</strong></p>
+                  <small class="text-muted">{{ adocao.telefone }}</small>
+                </div>
+                <a href="https://wa.me/55{{ adocao.telefone }}?text=Ol%C3%A1%20{{ adocao.nome_interessado }}%2C%20falamos%20da%20ONG%20Amor%20Animal%21" 
+                   target="_blank" class="btn btn-sm btn-success d-flex align-items-center gap-1">
+                  <i class="bi bi-whatsapp"></i> WhatsApp
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="text-center py-5 text-muted">
+          <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+          Nenhuma solicitação de adoção no momento.
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

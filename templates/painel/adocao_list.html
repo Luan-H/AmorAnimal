@@ -1,0 +1,56 @@
+{% extends 'painel/base_painel.html' %}
+
+{% block title %}Pedidos de Adoção - Painel Amor Animal{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+  <h2 class="fw-bold mb-1">Solicitações de Adoção</h2>
+  <p class="text-muted mb-0">Pessoas que demonstraram interesse em adotar um cãozinho pelo site.</p>
+</div>
+
+{% if adocoes %}
+  <div class="card shadow-sm border-0 rounded-3 p-4 bg-white">
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Interessado(a)</th>
+            <th>Cão Escolhido</th>
+            <th>Telefone / Contato</th>
+            <th>Mensagem</th>
+            <th>Data</th>
+            <th class="text-end">Ação Direta</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for adocao in adocoes %}
+            <tr>
+              <td class="fw-bold">{{ adocao.nome_interessado }}</td>
+              <td>
+                <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 fs-6">
+                  <i class="bi bi-heart me-1"></i> {{ adocao.animal_nome }}
+                </span>
+              </td>
+              <td>{{ adocao.telefone }}</td>
+              <td class="small text-muted">{{ adocao.mensagem|default:"Sem mensagem adicional" }}</td>
+              <td class="small text-muted">{{ adocao.data_solicitacao|slice:":10" }}</td>
+              <td class="text-end">
+                <a href="https://wa.me/55{{ adocao.telefone }}?text=Ol%C3%A1%20{{ adocao.nome_interessado }}%2C%20falamos%20da%20ONG%20Amor%20Animal%20sobre%20o%20c%C3%A3ozinho%20{{ adocao.animal_nome }}%21" 
+                   target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1">
+                  <i class="bi bi-whatsapp"></i> Conversar
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% else %}
+  <div class="card shadow-sm border-0 p-5 text-center bg-white">
+    <i class="bi bi-inbox text-muted fs-1 mb-3"></i>
+    <h4>Nenhum pedido de adoção recebido ainda!</h4>
+    <p class="text-muted">Assim que os visitantes preencherem o formulário no site, eles aparecerão aqui com botão direto para WhatsApp.</p>
+  </div>
+{% endif %}
+{% endblock %}

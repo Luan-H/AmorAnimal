@@ -1,0 +1,175 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Painel Amor Animal{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+  <link rel="icon" href="{% static 'img/icon.ico' %}" type="image/x-icon" />
+  <!-- Bootstrap Icons via CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <style>
+    :root {
+      --bs-primary: #ea7c23;
+      --bs-primary-rgb: 234, 124, 35;
+      --bs-light: #fdf2d6;
+      --bs-dark: #181310;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #181310;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 260px;
+      background-color: #181310;
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    .sidebar .nav-link {
+      color: rgba(255, 255, 255, 0.75);
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar .nav-link:hover, .sidebar .nav-link.active {
+      color: #fff;
+      background-color: #ea7c23;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    .btn-primary {
+      background-color: #ea7c23;
+      border-color: #ea7c23;
+    }
+    .btn-primary:hover {
+      background-color: #d36f1f;
+      border-color: #c6681d;
+    }
+
+    .btn-outline-primary {
+      color: #ea7c23;
+      border-color: #ea7c23;
+    }
+    .btn-outline-primary:hover {
+      background-color: #ea7c23;
+      border-color: #ea7c23;
+      color: #fff;
+    }
+
+    .card-stat {
+      border: none;
+      border-radius: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-stat:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
+    }
+
+    .badge-status {
+      font-size: 0.85rem;
+      padding: 0.4em 0.8em;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        min-height: auto;
+      }
+      .app-layout {
+        flex-direction: column !important;
+      }
+    }
+  </style>
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+  <div class="d-flex app-layout">
+    <!-- Sidebar Amigável -->
+    <nav class="sidebar d-flex flex-column p-3">
+      <a href="{% url 'core:painel_dashboard' %}" class="d-flex align-items-center mb-4 text-white text-decoration-none px-2">
+        <img src="{% static 'img/aaa.jpg' %}" alt="Logo Amor Animal" height="38" class="rounded me-2" />
+        <div>
+          <span class="fs-5 fw-bold d-block text-white">Amor Animal</span>
+          <small class="text-secondary" style="font-size: 0.75rem;">PAINEL DA ONG</small>
+        </div>
+      </a>
+
+      <ul class="nav flex-column mb-auto">
+        <li class="nav-item">
+          <a href="{% url 'core:painel_dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'painel_dashboard' %}active{% endif %}">
+            <i class="bi bi-grid-1x2-fill"></i> Visão Geral
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'core:animal_list' %}" class="nav-link {% if 'animal' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="bi bi-heart-pulse-fill"></i> Nossos Animais
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'core:patrocinador_list' %}" class="nav-link {% if 'patrocinador' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="bi bi-briefcase-fill"></i> Patrocinadores
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'core:adocao_list' %}" class="nav-link {% if request.resolver_match.url_name == 'adocao_list' %}active{% endif %}">
+            <i class="bi bi-chat-heart-fill"></i> Pedidos de Adoção
+          </a>
+        </li>
+      </ul>
+
+      <hr class="text-secondary">
+
+      <div class="d-flex flex-column gap-2 px-2">
+        <a href="{% url 'core:home' %}" target="_blank" class="btn btn-sm btn-outline-light d-flex align-items-center justify-content-center gap-2">
+          <i class="bi bi-box-arrow-up-right"></i> Ver Site Público
+        </a>
+        <a href="{% url 'core:painel_logout' %}" class="btn btn-sm btn-danger d-flex align-items-center justify-content-center gap-2">
+          <i class="bi bi-box-arrow-right"></i> Sair do Painel
+        </a>
+      </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+      <!-- Mensagens Flash -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'js/jquery-4.0.0.min.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+
+</html>

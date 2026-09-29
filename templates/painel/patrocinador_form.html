@@ -1,0 +1,51 @@
+{% extends 'painel/base_painel.html' %}
+
+{% block title %}{{ titulo }} - Amor Animal{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+  <a href="{% url 'core:patrocinador_list' %}" class="text-decoration-none text-muted small d-inline-flex align-items-center gap-1 mb-2">
+    <i class="bi bi-arrow-left"></i> Voltar para patrocinadores
+  </a>
+  <h2 class="fw-bold mb-1">{{ titulo }}</h2>
+  <p class="text-muted mb-0">Cadastre um parceiro ou patrocinador da ONG.</p>
+</div>
+
+<div class="row">
+  <div class="col-12 col-lg-6">
+    <div class="card shadow-sm border-0 rounded-3 p-4 bg-white">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">{{ form.nome.label }} *</label>
+          {{ form.nome }}
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">{{ form.link_externo.label }}</label>
+          {{ form.link_externo }}
+          <div class="form-text">Cole o link completo do perfil no Instagram (ex: https://instagram.com/empresa).</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">{{ form.logotipo.label }}</label>
+          {{ form.logotipo }}
+        </div>
+
+        <div class="form-check form-switch mb-4">
+          {{ form.ativo }}
+          <label class="form-check-label fw-semibold" for="{{ form.ativo.id_for_label }}">{{ form.ativo.label }}</label>
+        </div>
+
+        <div class="d-flex gap-2 pt-3 border-top">
+          <button type="submit" class="btn btn-primary px-4 fw-bold">
+            <i class="bi bi-check-circle me-1"></i> Salvar Patrocinador
+          </button>
+          <a href="{% url 'core:patrocinador_list' %}" class="btn btn-light px-4">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
