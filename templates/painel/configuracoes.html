@@ -1,0 +1,99 @@
+{% extends 'painel/base_painel.html' %}
+
+{% block title %}Textos e Informações - Painel Amor Animal{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+  <h2 class="fw-bold mb-1">Textos e Informações da ONG</h2>
+  <p class="text-muted mb-0">Tudo o que você alterar aqui será atualizado em tempo real na página inicial pública.</p>
+</div>
+
+<form method="POST">
+  {% csrf_token %}
+  
+  <div class="row g-4">
+    <!-- Bloco 1: Hero / Início -->
+    <div class="col-12 col-lg-6">
+      <div class="card shadow-sm border-0 rounded-3 p-4 bg-white h-100">
+        <h5 class="fw-bold text-primary mb-3">
+          <i class="bi bi-window-fullscreen me-2"></i>Início do Site (Hero)
+        </h5>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">{{ form.hero_titulo.label }} *</label>
+          {{ form.hero_titulo }}
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">{{ form.hero_subtitulo.label }} *</label>
+          {{ form.hero_subtitulo }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloco 2: Sobre a ONG -->
+    <div class="col-12 col-lg-6">
+      <div class="card shadow-sm border-0 rounded-3 p-4 bg-white h-100">
+        <h5 class="fw-bold text-primary mb-3">
+          <i class="bi bi-info-circle me-2"></i>Seção "Sobre a ONG"
+        </h5>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">{{ form.sobre_titulo.label }} *</label>
+          {{ form.sobre_titulo }}
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">{{ form.sobre_texto_1.label }} *</label>
+          {{ form.sobre_texto_1 }}
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">{{ form.sobre_texto_2.label }} *</label>
+          {{ form.sobre_texto_2 }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloco 3: Doações e Contatos -->
+    <div class="col-12">
+      <div class="card shadow-sm border-0 rounded-3 p-4 bg-white">
+        <h5 class="fw-bold text-primary mb-3">
+          <i class="bi bi-cash-coin me-2"></i>Doações e Canais de Contato
+        </h5>
+
+        <div class="row g-3">
+          <div class="col-12 col-md-4">
+            <label class="form-label fw-bold">{{ form.chave_pix.label }} *</label>
+            {{ form.chave_pix }}
+            <div class="form-text">Exibida no cartão de doações para os visitantes copiarem.</div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label fw-bold">{{ form.whatsapp_numero.label }} *</label>
+            {{ form.whatsapp_numero }}
+            <label class="form-label fw-bold mt-2">{{ form.whatsapp_link.label }} *</label>
+            {{ form.whatsapp_link }}
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label fw-bold">{{ form.instagram_usuario.label }} *</label>
+            {{ form.instagram_usuario }}
+            <label class="form-label fw-bold mt-2">{{ form.instagram_link.label }} *</label>
+            {{ form.instagram_link }}
+          </div>
+        </div>
+
+        <div class="pt-4 mt-3 border-top d-flex gap-2">
+          <button type="submit" class="btn btn-primary px-4 fw-bold">
+            <i class="bi bi-check-circle me-1"></i> Salvar Alterações na Página
+          </button>
+          <a href="{% url 'core:home' %}" target="_blank" class="btn btn-outline-dark">
+            <i class="bi bi-box-arrow-up-right me-1"></i> Visualizar Página Inicial
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

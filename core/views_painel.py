@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from . import firebase_service
 from . import storage_service
-from .forms import LoginForm, AnimalForm, PatrocinadorForm
+from .forms import LoginForm, AnimalForm, PatrocinadorForm, ConfiguracaoForm
+
 
 # ==========================================
 # AUTENTICAÇÃO
@@ -196,3 +197,43 @@ def patrocinador_delete(request, patrocinador_id):
 def adocao_list(request):
     adocoes = firebase_service.get_adocoes()
     return render(request, 'painel/adocao_list.html', {'adocoes': adocoes})
+
+@login_required(login_url='core:painel_login')
+def adocao_update_status(request, adocao_id):
+    if request.method == 'POST':
+        novo_status = request.POST.get('status')
+        status_validos = ['Não visto', 'Em contato', 'Adotado']
+        if novo_status in status_validos:
+            firebase_service.update_adocao_status(adocao_id, novo_status)
+            messages.success(request, f'Status do pedido atualizado para "{novo_status}".')
+        else:
+            messages.error(request, 'Status inválido informado.')
+    return redirect('core:adocao_list')
+
+@login_required(login_url='core:painel_login')
+def adocao_delete(request, adocao_id):
+    if request.method == 'POST':
+        firebase_service.delete_adocao(adocao_id)
+        messages.success(request, 'Pedido de adoção excluído com sucesso.')
+    return redirect('core:adocao_list')
+
+# ==========================================
+# CONFIGURAÇÕES E TEXTOS DO SITE
+# ==========================================
+@login_required(login_url='core:painel_login')
+def painel_configuracoes(request):
+    config = firebase_service.get_configuracoes()
+
+    if request.method == 'POST':
+        form = ConfiguracaoForm(request.POST)
+        if form.is_valid():
+            firebase_service.save_configuracoes(form.cleaned_data)
+            messages.success(request, 'Textos e informações da ONG foram atualizados na página inicial!')
+            return redirect('core:painel_configuracoes')
+        else:
+            messages.error(request, 'Por favor, verifique os campos do formulário.')
+    else:
+        form = ConfiguracaoForm(initial=config)
+
+    return render(request, 'painel/configuracoes.html', {'form': form})
+

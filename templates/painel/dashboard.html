@@ -160,7 +160,16 @@
             <div class="list-group-item px-0 py-3">
               <div class="d-flex justify-content-between align-items-start">
                 <div>
-                  <h6 class="mb-1 fw-bold">{{ adocao.nome_interessado }}</h6>
+                  <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                    <h6 class="mb-0 fw-bold">{{ adocao.nome_interessado }}</h6>
+                    {% if adocao.status == 'Adotado' %}
+                      <span class="badge bg-success bg-opacity-10 text-success border border-success">Adotado</span>
+                    {% elif adocao.status == 'Em contato' %}
+                      <span class="badge bg-primary bg-opacity-10 text-primary border border-primary">Em contato</span>
+                    {% else %}
+                      <span class="badge bg-warning bg-opacity-10 text-dark border border-warning">Não visto</span>
+                    {% endif %}
+                  </div>
                   <p class="text-muted small mb-1">Interesse em: <strong>{{ adocao.animal_nome }}</strong></p>
                   <small class="text-muted">{{ adocao.telefone }}</small>
                 </div>

@@ -26,4 +26,9 @@ urlpatterns = [
 
     # Solicitações de Adoção
     path('painel/adocoes/', views_painel.adocao_list, name='adocao_list'),
+    path('painel/adocoes/<str:adocao_id>/status/', views_painel.adocao_update_status, name='adocao_update_status'),
+    path('painel/adocoes/<str:adocao_id>/excluir/', views_painel.adocao_delete, name='adocao_delete'),
+
+    # Configurações e Textos da ONG
+    path('painel/configuracoes/', views_painel.painel_configuracoes, name='painel_configuracoes'),
 ]

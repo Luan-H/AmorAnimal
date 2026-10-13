@@ -144,3 +144,7 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', ''),
 }
 
+# Configurações de Sessão
+SESSION_COOKIE_AGE = 7200  # A sessão expira após 2 horas (7200 segundos)
+SESSION_SAVE_EVERY_REQUEST = True  # Renova o tempo de 2 horas a cada requisição ativa do usuário
+

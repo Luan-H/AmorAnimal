@@ -137,6 +137,11 @@
             <i class="bi bi-chat-heart-fill"></i> Pedidos de Adoção
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{% url 'core:painel_configuracoes' %}" class="nav-link {% if request.resolver_match.url_name == 'painel_configuracoes' %}active{% endif %}">
+            <i class="bi bi-sliders"></i> Textos e Contatos
+          </a>
+        </li>
       </ul>
 
       <hr class="text-secondary">

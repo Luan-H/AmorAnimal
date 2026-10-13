@@ -5,10 +5,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amor Animal - Cuiabá</title>
+  <title>{{ config.hero_titulo|default:"Amor Animal" }} - Cuiabá</title>
   <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
   <link rel="icon" href="{% static 'img/icon.ico' %}" type="image/x-icon" />
   <link rel="shortcut icon" href="{% static 'img/icon.ico' %}" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
     :root {
       /* Laranja (Predominante) */
@@ -60,12 +61,24 @@
 </head>
 
 <body>
+  <!-- Mensagens Flash (Alerta de Adoção ou Contato) -->
+  {% if messages %}
+    <div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1060; width: 90%; max-width: 600px;">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show shadow-lg" role="alert">
+          <i class="bi bi-info-circle me-2"></i>{{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
   <!-- Menu de Navegação -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
     <div class="container">
       <a class="navbar-brand text-primary fw-bold d-flex align-items-center" href="#">
         <img src="{% static 'img/aaa.jpg' %}" alt="Logo Amor Animal" height="40" class="me-2 object-fit-contain" />
-        Amor Animal
+        {{ config.hero_titulo|default:"Amor Animal" }}
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -95,9 +108,9 @@
   <!-- Introdução (Hero) -->
   <header class="bg-primary text-white text-center py-3">
     <div class="container py-3">
-      <h1 class="display-4 fw-bold">Amor Animal</h1>
+      <h1 class="display-4 fw-bold">{{ config.hero_titulo|default:"Amor Animal" }}</h1>
       <p class="lead">
-        Resgatando e transformando a vida de animais em Cuiabá.
+        {{ config.hero_subtitulo|default:"Resgatando e transformando a vida de animais em Cuiabá." }}
       </p>
       <a href="#como-ajudar" class="btn btn-light btn-lg mt-3">Quero Ajudar</a>
     </div>
@@ -108,21 +121,12 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-6">
-          <h2 class="fw-bold mb-4 text-primary">Sobre a ONG</h2>
+          <h2 class="fw-bold mb-4 text-primary">{{ config.sobre_titulo|default:"Sobre a ONG" }}</h2>
           <p>
-            Há aproximadamente 5 anos atrás , alguns protetores independentes
-            se reuniram com o propósito de formar uma organização não
-            governamental (ONG) que tornasse possível assistir, com um pouco
-            mais de dignidade, cães em estado de abandono e vulnerabilidade.
+            {{ config.sobre_texto_1|default:"Há aproximadamente 5 anos atrás , alguns protetores independentes se reuniram com o propósito de formar uma organização não governamental (ONG) que tornasse possível assistir, com um pouco mais de dignidade, cães em estado de abandono e vulnerabilidade." }}
           </p>
           <p>
-            A Associação Amor Animal atua como entidade que oferta serviços de
-            forma continuada, permanente e planejada, direcionados à prevenção
-            e mitigação da vulnerabilidade de animais abandonados, captando
-            doações de pessoas físicas e/ou jurídicas, dos setores privados
-            e/ou públicos e atua também de forma proativa com informações e
-            conhecimento sobre as causas e impactos negativos do abandono de
-            animais na sociedade.
+            {{ config.sobre_texto_2|default:"A Associação Amor Animal atua como entidade que oferta serviços de forma continuada, permanente e planejada, direcionados à prevenção e mitigação da vulnerabilidade de animais abandonados, captando doações de pessoas físicas e/ou jurídicas, dos setores privados e/ou públicos e atua também de forma proativa com informações e conhecimento sobre as causas e impactos negativos do abandono de animais na sociedade." }}
           </p>
         </div>
         <div class="col-md-6 text-center mt-4 mt-md-0">
@@ -182,97 +186,71 @@
     <div class="container">
       <h2 class="fw-bold text-center mb-4 text-primary">Antes e Depois</h2>
       <p class="text-center text-muted mb-5">
-        Veja a transformação incrível de alguns dos cães que passaram pelos
-        nossos cuidados.
+        Veja a transformação incrível de alguns dos cães que passaram pelos nossos cuidados.
       </p>
       <div class="row g-4">
-        {% if animais %}
-          {% for animal in animais %}
-            <div class="col-md-6 col-lg-4">
-              <div class="card shadow-sm border-0">
-                <div class="d-flex">
-                  <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+        {% for animal in animais %}
+          <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm border-0 h-100 d-flex flex-column justify-content-between">
+              <div>
+                <div class="d-flex position-relative">
+                  <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden position-relative"
                     style="height: 200px; border-right: 2px solid white">
                     {% if animal.foto_antes_url %}
                       <img src="{{ animal.foto_antes_url }}" alt="{{ animal.nome }} antes" class="w-100 h-100 object-fit-cover" />
                     {% else %}
                       <span class="small">Antes</span>
                     {% endif %}
+                    <span class="position-absolute bottom-0 start-0 m-2 badge bg-dark bg-opacity-75">Antes</span>
                   </div>
-                  <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
+                  <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden position-relative"
                     style="height: 200px">
                     {% if animal.foto_depois_url %}
                       <img src="{{ animal.foto_depois_url }}" alt="{{ animal.nome }} depois" class="w-100 h-100 object-fit-cover" />
                     {% else %}
                       <span class="small">Depois</span>
                     {% endif %}
+                    <span class="position-absolute bottom-0 end-0 m-2 badge bg-success bg-opacity-75">Depois</span>
                   </div>
                 </div>
                 <div class="card-body text-center">
-                  <h5 class="card-title mb-1">{{ animal.nome }}</h5>
+                  <div class="d-flex justify-content-center align-items-center gap-2 mb-2">
+                    <h5 class="card-title mb-0 fw-bold">{{ animal.nome }}</h5>
+                    {% if animal.status_adocao == 'Adotado' %}
+                      <span class="badge bg-success" style="font-size: 0.75rem;">Adotado</span>
+                    {% elif animal.status_adocao == 'Em Tratamento' %}
+                      <span class="badge bg-warning text-dark" style="font-size: 0.75rem;">Em Tratamento</span>
+                    {% else %}
+                      <span class="badge bg-primary" style="font-size: 0.75rem;">Disponível</span>
+                    {% endif %}
+                  </div>
                   {% if animal.historia %}
-                    <p class="text-muted small mb-0">{{ animal.historia|truncatewords:15 }}</p>
+                    <p class="text-muted small mb-0">{{ animal.historia|truncatewords:18 }}</p>
                   {% endif %}
                 </div>
               </div>
-            </div>
-          {% endfor %}
-        {% else %}
-          <!-- Cards padrão (fallback estático) -->
-          <div class="col-md-6 col-lg-4">
-            <div class="card shadow-sm border-0">
-              <div class="d-flex">
-                <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                  style="height: 200px; border-right: 2px solid white">
-                  <img src="{% static 'img/ne-antes.jpeg' %}" alt="Negão antes" class="w-100 h-100 object-fit-cover" />
-                </div>
-                <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                  style="height: 200px">
-                  <img src="{% static 'img/ne-depois.jpeg' %}" alt="Negão depois" class="w-100 h-100 object-fit-cover" />
-                </div>
-              </div>
-              <div class="card-body text-center">
-                <h5 class="card-title">Negão</h5>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-md-6 col-lg-4">
-            <div class="card shadow-sm border-0">
-              <div class="d-flex">
-                <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                  style="height: 200px; border-right: 2px solid white">
-                  <img src="{% static 'img/vi-antes.jpeg' %}" alt="Vitória antes" class="w-100 h-100 object-fit-cover" />
-                </div>
-                <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                  style="height: 200px">
-                  <img src="{% static 'img/vi-depois.jpeg' %}" alt="Vitória depois" class="w-100 h-100 object-fit-cover" />
-                </div>
-              </div>
-              <div class="card-body text-center">
-                <h5 class="card-title">Vitória</h5>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4">
-            <div class="card shadow-sm border-0">
-              <div class="d-flex">
-                <div class="bg-secondary text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                  style="height: 200px; border-right: 2px solid white">
-                  <img src="{% static 'img/antes.jpeg' %}" alt="Pretinha antes" class="w-100 h-100 object-fit-cover" />
-                </div>
-                <div class="bg-success text-white w-50 d-flex align-items-center justify-content-center overflow-hidden"
-                  style="height: 200px">
-                  <img src="{% static 'img/depois.jpeg' %}" alt="Pretinha depois" class="w-100 h-100 object-fit-cover" />
-                </div>
-              </div>
-              <div class="card-body text-center">
-                <h5 class="card-title">Pretinha</h5>
+              <!-- Botão Quero Adotar (Abre modal) -->
+              <div class="card-footer bg-white border-0 text-center pb-3 pt-0">
+                {% if animal.status_adocao == 'Adotado' %}
+                  <button class="btn btn-sm btn-outline-secondary w-100 disabled" disabled>
+                    <i class="bi bi-house-heart me-1"></i> Já Ganhou um Lar
+                  </button>
+                {% else %}
+                  <button type="button" class="btn btn-sm btn-outline-primary w-100 fw-semibold" 
+                          data-bs-toggle="modal" data-bs-target="#modalAdocao" 
+                          data-animal-id="{{ animal.id }}" data-animal-nome="{{ animal.nome }}">
+                    <i class="bi bi-heart-fill me-1 text-danger"></i> Quero Adotar {{ animal.nome }}
+                  </button>
+                {% endif %}
               </div>
             </div>
           </div>
-        {% endif %}
+        {% empty %}
+          <div class="col-12 text-center text-muted py-4">
+            <p>Nenhum cãozinho cadastrado no momento.</p>
+          </div>
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -282,88 +260,33 @@
     <div class="container text-center">
       <h2 class="fw-bold mb-5 text-primary">Nossos Patrocinadores</h2>
       <div class="row justify-content-center g-4">
-        {% if patrocinadores %}
-          {% for pat in patrocinadores %}
-            <div class="col-12 col-md-6 col-lg-3">
-              <div
-                class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
-                <div class="flex-shrink-0" style="width: 70px; height: 70px;">
-                  {% if pat.logotipo_url %}
-                    <img src="{{ pat.logotipo_url }}" alt="Logo {{ pat.nome }}" class="w-100 h-100 object-fit-contain" />
-                  {% else %}
-                    <div class="w-100 h-100 bg-light rounded d-flex align-items-center justify-content-center text-muted fw-bold">
-                      {{ pat.nome|slice:":2"|upper }}
-                    </div>
-                  {% endif %}
-                </div>
-                <div class="ms-3 text-start">
-                  <h6 class="mb-1 fw-bold text-dark">{{ pat.nome }}</h6>
-                  {% if pat.link_externo %}
-                    <a href="{{ pat.link_externo }}" target="_blank"
-                      class="text-decoration-none small text-primary fw-semibold">Visitar Perfil</a>
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        {% else %}
-          <!-- Patrocinadores padrão (fallback estático) -->
+        {% for pat in patrocinadores %}
           <div class="col-12 col-md-6 col-lg-3">
             <div
               class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
               <div class="flex-shrink-0" style="width: 70px; height: 70px;">
-                <img src="{% static 'img/medport_img.jpg' %}" alt="Logo MedPort" class="w-100 h-100 object-fit-contain" />
+                {% if pat.logotipo_url %}
+                  <img src="{{ pat.logotipo_url }}" alt="Logo {{ pat.nome }}" class="w-100 h-100 object-fit-contain" />
+                {% else %}
+                  <div class="w-100 h-100 bg-light rounded d-flex align-items-center justify-content-center text-muted fw-bold">
+                    {{ pat.nome|slice:":2"|upper }}
+                  </div>
+                {% endif %}
               </div>
               <div class="ms-3 text-start">
-                <h6 class="mb-1 fw-bold text-dark">MedPort</h6>
-                <a href="https://www.instagram.com/clinicamedport/" target="_blank"
-                  class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
+                <h6 class="mb-1 fw-bold text-dark">{{ pat.nome }}</h6>
+                {% if pat.link_externo %}
+                  <a href="{{ pat.link_externo }}" target="_blank"
+                    class="text-decoration-none small text-primary fw-semibold">Visitar Perfil</a>
+                {% endif %}
               </div>
             </div>
           </div>
-
-          <div class="col-12 col-md-6 col-lg-3">
-            <div
-              class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
-              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
-                <img src="{% static 'img/petsee_img.jpg' %}" alt="Logo PetSee" class="w-100 h-100 object-fit-contain" />
-              </div>
-              <div class="ms-3 text-start">
-                <h6 class="mb-1 fw-bold text-dark">PetSee</h6>
-                <a href="https://www.instagram.com/petsee_pet/" target="_blank"
-                  class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
-              </div>
-            </div>
+        {% empty %}
+          <div class="col-12 text-center text-muted">
+            <p>Nenhum patrocinador parceiro cadastrado.</p>
           </div>
-
-          <div class="col-12 col-md-6 col-lg-3">
-            <div
-              class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
-              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
-                <img src="{% static 'img/petmarket_img.jpg' %}" alt="Logo PetMarket" class="w-100 h-100 object-fit-contain" />
-              </div>
-              <div class="ms-3 text-start">
-                <h6 class="mb-1 fw-bold text-dark">PetMarket</h6>
-                <a href="https://www.instagram.com/petmarketcuiaba/" target="_blank"
-                  class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-lg-3">
-            <div
-              class="bg-white p-3 rounded shadow-sm border d-flex align-items-center h-100 position-relative patrocinador-card">
-              <div class="flex-shrink-0" style="width: 70px; height: 70px;">
-                <img src="{% static 'img/mpmt_img.jpg' %}" alt="Logo Ministério Público MT" class="w-100 h-100 object-fit-contain" />
-              </div>
-              <div class="ms-3 text-start">
-                <h6 class="mb-1 fw-bold text-dark">Ministério Público de Mato Grosso</h6>
-                <a href="https://www.instagram.com/mpemt/" target="_blank"
-                  class="text-decoration-none small text-primary fw-semibold">Visitar Instagram</a>
-              </div>
-            </div>
-          </div>
-        {% endif %}
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -381,11 +304,10 @@
             <div class="card-body py-4">
               <h4 class="card-title text-primary">Doações</h4>
               <p class="card-text">
-                Faça uma contribuição financeira via PIX ou transferência e
-                ajude na compra de ração e medicamentos.
+                Faça uma contribuição financeira via PIX ou transferência e ajude na compra de ração e medicamentos.
               </p>
               <p class="fw-bold mb-0 mt-3">Chave PIX:</p>
-              <p class="fs-5">49.671.733/0001-47</p>
+              <p class="fs-5 fw-bold text-primary">{{ config.chave_pix|default:"49.671.733/0001-47" }}</p>
             </div>
           </div>
         </div>
@@ -394,10 +316,9 @@
             <div class="card-body py-4">
               <h4 class="card-title text-primary">Seja Voluntário</h4>
               <p class="card-text">
-                Precisamos de mãos dispostas a ajudar em nossos eventos,
-                feiras de adoção e no dia a dia.
+                Precisamos de mãos dispostas a ajudar em nossos eventos, feiras de adoção e no dia a dia.
               </p>
-              <a href="https://www.instagram.com/amoranimal.cuiaba" class="btn btn-outline-primary mt-2"
+              <a href="{{ config.instagram_link|default:'https://www.instagram.com/amoranimal.cuiaba' }}" class="btn btn-outline-primary mt-2"
                 target="_blank">Mandar mensagem no Instagram</a>
             </div>
           </div>
@@ -407,18 +328,17 @@
             <div class="card-body py-4">
               <h4 class="card-title text-primary">Contato</h4>
               <p class="card-text">
-                Acompanhe nossas redes sociais, mande uma mensagem e ajude a
-                divulgar nosso trabalho.
+                Acompanhe nossas redes sociais, mande uma mensagem e ajude a divulgar nosso trabalho.
               </p>
               <div class="mt-3">
                 <p class="mb-1">
                   <strong>Instagram:</strong>
-                  <a href="https://www.instagram.com/amoranimal.cuiaba" target="_blank" class="text-primary fw-semibold">@amoranimal.cuiaba</a>
+                  <a href="{{ config.instagram_link|default:'https://www.instagram.com/amoranimal.cuiaba' }}" target="_blank" class="text-primary fw-semibold">{{ config.instagram_usuario|default:'@amoranimal.cuiaba' }}</a>
                 </p>
                 <p class="mb-0">
                   <strong>Telefone:</strong>
-                  <a href="https://wa.me/5565981193351?text=Ol%C3%A1%2C%20vim%20do%20site%21"
-                    target="_blank" class="text-primary fw-semibold"> (65) 9 8119-3351</a>
+                  <a href="{{ config.whatsapp_link|default:'https://wa.me/5565981193351' }}"
+                    target="_blank" class="text-primary fw-semibold"> {{ config.whatsapp_numero|default:'(65) 9 8119-3351' }}</a>
                 </p>
               </div>
             </div>
@@ -427,6 +347,50 @@
       </div>
     </div>
   </section>
+
+  <!-- Modal de Solicitação de Adoção -->
+  <div class="modal fade" id="modalAdocao" tabindex="-1" aria-labelledby="modalAdocaoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <form method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="solicitar_adocao" value="1">
+          <input type="hidden" name="animal_id" id="modalAnimalId">
+          <input type="hidden" name="animal_nome" id="modalAnimalNome">
+
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title fw-bold" id="modalAdocaoLabel">
+              <i class="bi bi-heart-fill me-2"></i>Interesse em Adoção: <span id="modalAnimalNomeSpan"></span>
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <p class="text-muted small mb-3">
+              Preencha seus dados abaixo. A equipe da ONG Amor Animal entrará em contato com você pelo WhatsApp para dar andamento ao processo de adoção responsável.
+            </p>
+            <div class="mb-3">
+              <label class="form-label fw-bold">Seu Nome Completo *</label>
+              <input type="text" name="nome_interessado" class="form-control" placeholder="Digite seu nome" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold">Seu WhatsApp (com DDD) *</label>
+              <input type="text" name="telefone" class="form-control" placeholder="Ex: (65) 99999-9999" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold">Mensagem ou Observações (opcional)</label>
+              <textarea name="mensagem" class="form-control" rows="3" placeholder="Você tem casa ou apartamento? Já tem outros animais?"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer bg-light">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary fw-bold">
+              <i class="bi bi-send-fill me-1"></i> Enviar Solicitação
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <!-- Rodapé -->
   <footer class="bg-dark text-white text-center py-4">
@@ -447,7 +411,7 @@
   <!-- Inclusão do jQuery (arquivo local servido pelo Django) -->
   <script src="{% static 'js/jquery-4.0.0.min.js' %}"></script>
 
-  <!-- Script de Animações com jQuery -->
+  <!-- Script de Animações com jQuery e Tratamento do Modal -->
   <script>
     $(document).ready(function () {
 
@@ -498,6 +462,20 @@
           $(this).stop(true, true).animate({ top: '0px' }, 200).removeClass('shadow-lg');
         }
       );
+
+      // 5. Configurar os dados no Modal de Adoção ao clicar no botão
+      var modalAdocao = document.getElementById('modalAdocao');
+      if (modalAdocao) {
+        modalAdocao.addEventListener('show.bs.modal', function (event) {
+          var button = event.relatedTarget;
+          var animalId = button.getAttribute('data-animal-id');
+          var animalNome = button.getAttribute('data-animal-nome');
+
+          document.getElementById('modalAnimalId').value = animalId;
+          document.getElementById('modalAnimalNome').value = animalNome;
+          document.getElementById('modalAnimalNomeSpan').textContent = animalNome;
+        });
+      }
     });
   </script>
 </body>

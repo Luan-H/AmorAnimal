@@ -17,9 +17,10 @@
             <th>Interessado(a)</th>
             <th>Cão Escolhido</th>
             <th>Telefone / Contato</th>
+            <th>Status</th>
             <th>Mensagem</th>
             <th>Data</th>
-            <th class="text-end">Ação Direta</th>
+            <th class="text-end">Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -32,13 +33,62 @@
                 </span>
               </td>
               <td>{{ adocao.telefone }}</td>
-              <td class="small text-muted">{{ adocao.mensagem|default:"Sem mensagem adicional" }}</td>
+              <td>
+                <form method="POST" action="{% url 'core:adocao_update_status' adocao.id %}" class="d-inline-block">
+                  {% csrf_token %}
+                  <select name="status" class="form-select form-select-sm fw-semibold {% if adocao.status == 'Adotado' %}border-success text-success bg-success bg-opacity-10{% elif adocao.status == 'Em contato' %}border-primary text-primary bg-primary bg-opacity-10{% else %}border-warning text-dark bg-warning bg-opacity-10{% endif %}" 
+                          onchange="this.form.submit()" 
+                          title="Clique para alterar o status">
+                    <option value="Não visto" {% if adocao.status == 'Não visto' %}selected{% endif %}>🟡 Não visto</option>
+                    <option value="Em contato" {% if adocao.status == 'Em contato' %}selected{% endif %}>🔵 Em contato</option>
+                    <option value="Adotado" {% if adocao.status == 'Adotado' %}selected{% endif %}>🟢 Adotado</option>
+                  </select>
+                </form>
+              </td>
+              <td class="small text-muted" style="max-width: 200px;">
+                <div class="text-truncate" title="{{ adocao.mensagem }}">
+                  {{ adocao.mensagem|default:"Sem mensagem adicional" }}
+                </div>
+              </td>
               <td class="small text-muted">{{ adocao.data_solicitacao|slice:":10" }}</td>
               <td class="text-end">
-                <a href="https://wa.me/55{{ adocao.telefone }}?text=Ol%C3%A1%20{{ adocao.nome_interessado }}%2C%20falamos%20da%20ONG%20Amor%20Animal%20sobre%20o%20c%C3%A3ozinho%20{{ adocao.animal_nome }}%21" 
-                   target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1">
-                  <i class="bi bi-whatsapp"></i> Conversar
-                </a>
+                <div class="d-inline-flex align-items-center gap-2">
+                  <a href="https://wa.me/55{{ adocao.telefone }}?text=Ol%C3%A1%20{{ adocao.nome_interessado }}%2C%20falamos%20da%20ONG%20Amor%20Animal%20sobre%20o%20c%C3%A3ozinho%20{{ adocao.animal_nome }}%21" 
+                     target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1" title="Conversar no WhatsApp">
+                    <i class="bi bi-whatsapp"></i> Conversar
+                  </a>
+                  <button type="button" class="btn btn-sm btn-outline-danger d-inline-flex align-items-center gap-1" 
+                          data-bs-toggle="modal" data-bs-target="#modalExcluir{{ adocao.id }}" title="Excluir pedido">
+                    <i class="bi bi-trash"></i> Excluir
+                  </button>
+                </div>
+
+                <!-- Modal de Confirmação de Exclusão -->
+                <div class="modal fade text-start" id="modalExcluir{{ adocao.id }}" tabindex="-1" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title fw-bold text-danger">
+                          <i class="bi bi-exclamation-triangle me-1"></i> Confirmar Exclusão
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p class="mb-1">Deseja realmente excluir o pedido de adoção de <strong>{{ adocao.nome_interessado }}</strong>?</p>
+                        <small class="text-muted">Interesse no cãozinho: <strong>{{ adocao.animal_nome }}</strong>. Esta ação não poderá ser desfeita.</small>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                        <form method="POST" action="{% url 'core:adocao_delete' adocao.id %}" class="d-inline">
+                          {% csrf_token %}
+                          <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash"></i> Sim, Excluir Pedido
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </td>
             </tr>
           {% endfor %}
